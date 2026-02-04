@@ -1,9 +1,33 @@
 const express = require('express')
 const cors = require('cors');
+const bodyParser = require('body-parser');
 const app = express();
 app.use(cors());
+app.use(bodyParser.json());
 const port = 3000;
 
+// GET BY ID
+app.get('/:id', (req, res) => {
+    let users = [
+        {
+            "id": 1,
+            "name": "Leanne Graham",
+            "username": "Bret",
+            "email": "Sincere@april.biz",
+            "address": {
+                "street": "Kulas Light",
+                "suite": "Apt. 556",
+                "city": "Gwenborough",
+                "zipcode": "92998-3874",
+                "geo": {
+                    "lat": "-37.3159",
+                    "lng": "81.1496"
+                }
+            }
+        }];
+    res.json(users);
+})
+// GET ALL
 app.get('/', (req, res) => {
     let users = [
         {
@@ -238,6 +262,18 @@ app.get('/', (req, res) => {
         }
     ]
     res.json(users);
+})
+// POST
+app.post('/', (req, res) => {
+    res.json({ status: 'success', message: req.body })
+})
+// PUT 
+app.put('/', (req, res) => {
+    res.json({ status: 'success', message: req.body })
+})
+// DELTE
+app.delete('/', (req, res) => {
+    res.json({ status: 'success', message: 'DELETE' })
 })
 
 app.listen(port, () => {
